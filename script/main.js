@@ -7,6 +7,12 @@ var app = playground({
 
   create: function() {
     this.loadImage("background.jpg", "ship");
+
+    this.ship = {
+      image: "ship",
+      x: this.center.x,
+      y: this.center.y
+    };
     
     this.spaceBug = { 
       x: 0, 
@@ -32,7 +38,9 @@ var app = playground({
     this.layer.clear("#000088")
         .align(0.28, 0.28);
     this.layer.drawImage(this.images.background, 0, 0);
-    this.layer.drawImage(this.images.ship, this.center.y + this.images.ship.width, this.center.x);
+    var shipN = this.ship;
+    this.layer.drawImage(this.images.ship, shipN.y, shipN.x);
+    // this.layer.drawImage(this.images.ship, this.center.y + this.images.ship.width, this.center.x);
 
     //space bug rendering
     var spaceBug = this.spaceBug;
@@ -40,20 +48,19 @@ var app = playground({
       .fillStyle(spaceBug.color)
       .fillRect(spaceBug.x, spaceBug.y, spaceBug.width, spaceBug.height);
 
+
   },
-
-  // mousedown: function() {
-
-  //   this.tween(this.images.ship).to({
-  //     width: 400,
-  //     height: 200
-  //   }, 1.5);
-
-  // },
 
   keydown: function(event) {
 
-    event.key  /* pressed key name */
-
+    event.left;
+    if (this.keyboard.keys.left) { 
+      this.ship.y -= 5;
+    };
+    event.right;
+    if (this.keyboard.keys.rigth) { 
+      this.ship.y += 5;
+    };    
   }
+
 });
